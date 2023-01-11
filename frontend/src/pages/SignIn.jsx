@@ -30,13 +30,16 @@ function SignIn() {
         identifier: values.email,
         password: values.password,
       };
-      const response = await fetch(`${import.meta.env.VITE_API}/auth/local`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(value),
-      });
+      const response = await fetch(
+        `http://${import.meta.env.VITE_API}/auth/local`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(value),
+        }
+      );
 
       const data = await response.json();
       if (data?.error) {

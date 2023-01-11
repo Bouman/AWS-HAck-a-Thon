@@ -10,15 +10,18 @@ function Profile() {
   const handleProfileUpdate = async (data) => {
     setLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API}/users/${user.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          // set the auth token to the user's jwt
-          Authorization: `Bearer ${getToken()}`,
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `http://${import.meta.env.VITE_API}/users/${user.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            // set the auth token to the user's jwt
+            Authorization: `Bearer ${getToken()}`,
+          },
+          body: JSON.stringify(data),
+        }
+      );
       const responseData = await response.json();
 
       setUser(responseData);

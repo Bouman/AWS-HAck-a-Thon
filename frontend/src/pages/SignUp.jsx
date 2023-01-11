@@ -29,13 +29,16 @@ function SignUp() {
   const onFinish = async (values) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API}/auth/local/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+      const response = await fetch(
+        `http://${import.meta.env.VITE_API}/auth/local/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }
+      );
 
       const data = await response.json();
       if (data?.error) {
