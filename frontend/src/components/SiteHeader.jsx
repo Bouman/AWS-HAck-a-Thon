@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Space } from "antd";
-import { CgWebsite } from "react-icons/cg";
+import { IoLogoFreebsdDevil } from "react-icons/io";
 import { useAuthContext } from "../contexts/AuthContext";
 import { removeToken } from "../hooks/helpers";
 
@@ -20,7 +20,7 @@ function SiteHeader() {
         <h1>Rent Cars School</h1>
       </Link>
       <Button className="header_space_brand" href="/" type="link">
-        <CgWebsite size={64} />
+        <IoLogoFreebsdDevil size={55} />
       </Button>
       <Space className="auth_buttons">
         {user ? (
