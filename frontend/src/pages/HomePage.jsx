@@ -1,24 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+import { useQuery, gql } from "@apollo/client";
+
+const CARS = gql`
+  query GetCars {
+    cars {
+      data {
+        id
+        attributes {
+          title
+          body
+          rating
+          categories {
+            data {
+              id
+              attributes {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default function Homepage() {
-  const { loading, error, data } = useFetch(
-    `${import.meta.env.VITE_BACKEND_URL}/api/cars`
-  );
+  const { loading, error, data } = useQuery(CARS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
   return (
     <div>
-      {data.data.map((cars) => (
-        <div key={cars.id} className="review-card">
-          <div className="rating">{cars.rating}</div>
+      {data.cars.data.map((cars) => (
+        <div key={cars.attributes.id} className="review-card">
+          <div className="rating">{cars.attributes.rating}</div>
           <h2>{cars.attributes.title}</h2>
-
-          <small>console list</small>
-
+          <small />
           <p>{cars.attributes.body.substring(0, 200)}...</p>
           <Link to={`/details/${cars.id}`}>Read more</Link>
         </div>

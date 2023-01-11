@@ -12,7 +12,7 @@
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
   "dependencies": {
-    "@strapi/plugin-graphql": "4.5.5",
+    "@strapi/plugin-graphql": "^4.5.5",
     "@strapi/strapi": "4.5.3", 
     "@strapi/plugin-users-permissions": "4.5.3",
     "@strapi/plugin-i18n": "4.5.3",

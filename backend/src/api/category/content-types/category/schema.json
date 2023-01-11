@@ -4,7 +4,8 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "Category"
+    "displayName": "Categories",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,13 +14,12 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": true
     },
     "cars": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::cars-sing.cars-sing",
+      "target": "api::car.car",
       "inversedBy": "categories"
     }
   }

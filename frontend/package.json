@@ -10,8 +10,10 @@
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
   "dependencies": {
+    "@apollo/client": "^3.7.3",
     "antd": "^5.1.4",
     "dotenv": "^16.0.3",
+    "graphql": "^16.6.0",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

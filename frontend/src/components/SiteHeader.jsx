@@ -2,17 +2,34 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Space } from "antd";
 import { IoLogoFreebsdDevil } from "react-icons/io";
+import { useQuery, gql } from "@apollo/client";
 import { useAuthContext } from "../contexts/AuthContext";
 import { removeToken } from "../hooks/helpers";
+
+const CATEGORIES = gql`
+  query GetCategories {
+    categories {
+      data {
+        id
+        attributes {
+          name
+        }
+      }
+    }
+  }
+`;
 
 function SiteHeader() {
   const { user } = useAuthContext();
   const navigate = useNavigate();
-
   const handleLogout = () => {
     removeToken();
     navigate("/signin", { replace: true });
   };
+
+  const { loading, error, data } = useQuery(CATEGORIES);
+  if (loading) return <p>Loading categories...</p>;
+  if (error) return <p>Error fetching categories</p>;
 
   return (
     <Space className="header_space">
@@ -51,6 +68,14 @@ function SiteHeader() {
           </>
         )}
       </Space>
+      <nav className="categories">
+        <span>Filter cars by category:</span>
+        {data.categories.data.map((category) => (
+          <Link key={category.id} to={`/category/${category.id}`}>
+            {category.attributes.name}
+          </Link>
+        ))}
+      </nav>
     </Space>
   );
 }
