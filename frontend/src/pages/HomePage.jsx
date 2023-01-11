@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 
 export default function Homepage() {
   const { loading, error, data } = useFetch(
-    `${import.meta.VITE_BACKEND_URL}/api/cars`
+    `${import.meta.env.VITE_BACKEND_URL}/api/cars`
   );
 
   if (loading) return <p>Loading...</p>;

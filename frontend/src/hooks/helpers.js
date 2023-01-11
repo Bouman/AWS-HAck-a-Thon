@@ -1,13 +1,13 @@
 export const getToken = () => {
-  return localStorage.getItem(import.meta.AUTH_TOKEN);
+  return localStorage.getItem(import.meta.env.VITE_AUTH_TOKEN);
 };
 
 export const setToken = (token) => {
   if (token) {
-    localStorage.setItem(import.meta.AUTH_TOKEN, token);
+    localStorage.setItem(import.meta.env.VITE_AUTH_TOKEN, token);
   }
 };
 
 export const removeToken = () => {
-  localStorage.removeItem(import.meta.AUTH_TOKEN);
+  localStorage.removeItem(import.meta.env.VITE_AUTH_TOKEN);
 };

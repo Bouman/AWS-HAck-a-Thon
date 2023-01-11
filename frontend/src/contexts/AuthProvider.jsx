@@ -12,8 +12,8 @@ function AuthProvider({ children }) {
   const fetchLoggedInUser = async (token) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${import.meta.API}/users/me`, {
-        headers: { Authorization: `${import.meta.BEARER} ${token}` },
+      const response = await fetch(`${import.meta.env.VITE_API}/users/me`, {
+        headers: { Authorization: `${import.meta.env.VITE_BEARER} ${token}` },
       });
       const data = await response.json();
 

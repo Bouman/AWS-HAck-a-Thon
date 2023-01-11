@@ -10,7 +10,7 @@ function Profile() {
   const handleProfileUpdate = async (data) => {
     setLoading(true);
     try {
-      const response = await fetch(`${import.meta.API}/users/${user.id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API}/users/${user.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

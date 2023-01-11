@@ -26,7 +26,7 @@ function SocialCards() {
   const fetchProfiles = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${import.meta.API}/users`);
+      const response = await fetch(`${import.meta.env.VITE_API}/users`);
       const data = await response.json();
       setProfiles(data ?? []);
     } catch (error) {
@@ -60,7 +60,7 @@ function SocialCards() {
                 preview={false}
                 src={
                   profile.avatar_url ??
-                  `${import.meta.AVATAR_API}?name=${
+                  `${import.meta.VITE_AVATAR_API}?name=${
                     profile.username
                   }&background=1890ff&color=fff`
                 }
