@@ -1,13 +1,29 @@
-import Home from "./pages/Home";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import "./App.css";
+// page & layout imports
+import Homepage from "./pages/HomePage";
+import ReviewDetails from "./pages/CarsDetails";
+import Category from "./pages/Category";
+import SiteHeader from "./components/SiteHeader";
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-      <p>coucou</p>
-    </div>
+    <Router>
+      <div className="App">
+        <SiteHeader />
+        <Switch>
+          <Route exact path="/">
+            <Homepage />
+          </Route>
+          <Route path="/details/:id">
+            <ReviewDetails />
+          </Route>
+          <Route path="/category/:id">
+            <Category />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
