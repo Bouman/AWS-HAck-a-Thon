@@ -1,11 +1,8 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 function ToggleInput({ labelName }) {
   const [isChecked, setIsChecked] = useState(true);
-
-  // add your condition and response here
-  // ===>
-  //
 
   return (
     <label className="relative inline-flex items-center cursor-pointer">
@@ -25,3 +22,7 @@ function ToggleInput({ labelName }) {
 }
 
 export default ToggleInput;
+
+ToggleInput.propTypes = {
+  labelName: PropTypes.string.isRequired,
+};

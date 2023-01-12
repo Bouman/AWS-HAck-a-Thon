@@ -11,7 +11,7 @@ import {
   Typography,
 } from "antd";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import useScreenSize from "../hooks/useScreenSize";
 import { setToken } from "../hooks/helpers";
@@ -60,7 +60,9 @@ function SignIn() {
     }
   };
 
-  console.log(user);
+  if (user) {
+    <Navigate to="/profile" />;
+  }
 
   return (
     <div className="min-h-screen bg-rose-800">

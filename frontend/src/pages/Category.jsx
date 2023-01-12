@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import CardCars from "@components/CardCars";
 
@@ -76,22 +76,4 @@ export default function Category() {
       </div>
     </div>
   );
-}
-
-{
-  /* <CardCars
-name={c.attributes.title}
-desc={c.attributes.body.substring(0, 200)}
-rate={c.attributes.rating}
-carId={c.id}
-carImage={import.meta.env.VITE_BACKEND_URL + c.attributes.photo.data.attributes.url}
-/>
-*/
-}
-
-{
-  /* {car.attributes.categories.data.map((c) => (
-            <p>{console.log(c);}</p>
-            <div key={c.id}  className="h-fit" />
-          ))} */
 }

@@ -1,10 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
-import ToggleInput from "@components/ToggleInput";
-import CheckBoxFilter from "@components/CheckBoxFilter";
-import ButtonFilter from "@components/ButtonFilter";
-import InputFilter from "@components/InputFilter";
 import CardCars from "@components/CardCars";
 
 const CARS = gql`
@@ -42,8 +36,6 @@ export default function Homepage() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-
-  console.log(data);
 
   return (
     <section className="bg-rose-800 w-full flex flex-col lg:flex-row h-fit">

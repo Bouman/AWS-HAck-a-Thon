@@ -19,22 +19,31 @@ function FooterSite() {
         </a>
         <ul className="flex flex-wrap items-center mb-6 text-sm text-white sm:mb-0 dark:text-gray-400">
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">
+            <a
+              href="https://flowbite.com/"
+              className="mr-4 hover:underline md:mr-6 "
+            >
               About
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
+            <a
+              href="https://flowbite.com/"
+              className="mr-4 hover:underline md:mr-6"
+            >
               Privacy Policy
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">
+            <a
+              href="https://flowbite.com/"
+              className="mr-4 hover:underline md:mr-6 "
+            >
               Licensing
             </a>
           </li>
           <li>
-            <a href="#" className="hover:underline">
+            <a href="https://flowbite.com/" className="hover:underline">
               Contact
             </a>
           </li>

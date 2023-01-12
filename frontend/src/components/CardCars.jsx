@@ -49,8 +49,8 @@ function CardCars({ name, rate, carId, carImage }) {
 export default CardCars;
 
 CardCars.propTypes = {
-  name: PropTypes.element.isRequired,
-  rate: PropTypes.element.isRequired,
-  carId: PropTypes.element.isRequired,
-  carImage: PropTypes.element.isRequired,
+  name: PropTypes.string.isRequired,
+  rate: PropTypes.number.isRequired,
+  carId: PropTypes.string.isRequired,
+  carImage: PropTypes.string.isRequired,
 };

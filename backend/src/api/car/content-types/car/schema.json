@@ -61,6 +61,12 @@
     "km": {
       "type": "integer",
       "required": true
+    },
+    "locations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::location.location",
+      "inversedBy": "cars"
     }
   }
 }

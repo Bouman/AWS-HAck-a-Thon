@@ -1,13 +1,9 @@
 /* eslint-disable react/prop-types */
-
 import "./cars.scss";
-import { useState } from "react";
 import { GrMapLocation } from "react-icons/gr";
 import { Link } from "react-router-dom";
 
 function CarParc() {
-  const [isActive, setIsActive] = useState();
-
   return (
     <div className="page">
       <div className="list">
@@ -23,7 +19,7 @@ function CarParc() {
           </div>
           <ul>
             <li>
-              <Link to="/details/${id}">Ici</Link>
+              <Link to="/details">Ici</Link>
             </li>
           </ul>
         </div>
