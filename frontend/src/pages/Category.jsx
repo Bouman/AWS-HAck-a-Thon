@@ -2,6 +2,8 @@ import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import { useParams, Link } from "react-router-dom";
 
+import CardCars from "@components/CardCars";
+
 const CATEGORY = gql`
   query GetCategory($id: ID!) {
     category(id: $id) {
@@ -16,6 +18,13 @@ const CATEGORY = gql`
                 title
                 body
                 rating
+                photo {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
                 categories {
                   data {
                     id
@@ -43,21 +52,46 @@ export default function Category() {
   if (error) return <p>Error :(</p>;
 
   return (
-    <div>
-      <h2>{data.category.name} Filtrer par Marques</h2>
+    <div className="h-fit min-h-screen bg-rose-800">
+      <div className="bg-gray-800 min-h-screen h-fit rounded-br-[25%]">
+        <h2 className="text-3xl font-bebas text-gray-200">
+          {data.category.name} Filtrer par Marques
+        </h2>
 
-      {data.category.data.attributes.cars.data.map((car) => (
-        <div key={car.id} className="cars-card">
-          <div className="rating">{car.rating}</div>
-          <h2>{car.title}</h2>
-
-          {car.attributes.categories.data.map((c) => (
-            <small key={c.id}>{c.name}</small>
+        <section className="flex flex-col gap-4 h-fit lg:flex-row lg:flex-wrap lg:w-4/5 lg:mx-auto">
+          {data.category.data.attributes.cars.data.map((car) => (
+            <div className="mx-auto lg:mx-0" key={car.id}>
+              <CardCars
+                carId={car.id}
+                name={car.attributes.title}
+                rate={car.attributes.rating}
+                carImage={
+                  import.meta.env.VITE_BACKEND_URL +
+                  car.attributes.photo.data[0].attributes.url
+                }
+              />
+            </div>
           ))}
-          <p>{car.attributes.body.substring(0, 200)}...</p>
-          <Link to={`/details/${car.id}`}>Read more</Link>
-        </div>
-      ))}
+        </section>
+      </div>
     </div>
   );
+}
+
+{
+  /* <CardCars
+name={c.attributes.title}
+desc={c.attributes.body.substring(0, 200)}
+rate={c.attributes.rating}
+carId={c.id}
+carImage={import.meta.env.VITE_BACKEND_URL + c.attributes.photo.data.attributes.url}
+/>
+*/
+}
+
+{
+  /* {car.attributes.categories.data.map((c) => (
+            <p>{console.log(c);}</p>
+            <div key={c.id}  className="h-fit" />
+          ))} */
 }

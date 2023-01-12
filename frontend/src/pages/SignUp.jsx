@@ -63,73 +63,77 @@ function SignUp() {
   };
 
   return (
-    <Row align="middle">
-      <Col span={isDesktopView ? 8 : 24} offset={isDesktopView ? 8 : 0}>
-        <Card title="SignUp">
-          {error ? (
-            <Alert
-              className="alert_error"
-              message={error}
-              type="error"
-              closable
-              afterClose={() => setError("")}
-            />
-          ) : null}
-          <Form
-            name="basic"
-            layout="vertical"
-            onFinish={onFinish}
-            autoComplete="off"
-          >
-            <Form.Item
-              label="Username"
-              name="username"
-              rules={[
-                {
-                  required: true,
-                  type: "string",
-                },
-              ]}
-            >
-              <Input placeholder="Username" />
-            </Form.Item>
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                {
-                  required: true,
-                  type: "email",
-                },
-              ]}
-            >
-              <Input placeholder="Email address" />
-            </Form.Item>
-
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[{ required: true }]}
-            >
-              <Input.Password placeholder="Password" />
-            </Form.Item>
-
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login_submit_btn"
+    <div className="min-h-screen bg-rose-800">
+      <div className="h-full min-h-screen bg-gray-800 rounded-br-[25%] pt-12 border-b-4 border-rose-500">
+        <Row align="middle">
+          <Col span={isDesktopView ? 8 : 24} offset={isDesktopView ? 8 : 0}>
+            <Card title="SignUp">
+              {error ? (
+                <Alert
+                  className="alert_error"
+                  message={error}
+                  type="error"
+                  closable
+                  afterClose={() => setError("")}
+                />
+              ) : null}
+              <Form
+                name="basic"
+                layout="vertical"
+                onFinish={onFinish}
+                autoComplete="off"
               >
-                Submit {isLoading && <Spin size="small" />}
-              </Button>
-            </Form.Item>
-          </Form>
-          <Typography.Paragraph className="form_help_text">
-            Already have an account? <Link to="/signin">Sign In</Link>
-          </Typography.Paragraph>
-        </Card>
-      </Col>
-    </Row>
+                <Form.Item
+                  label="Username"
+                  name="username"
+                  rules={[
+                    {
+                      required: true,
+                      type: "string",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Username" />
+                </Form.Item>
+                <Form.Item
+                  label="Email"
+                  name="email"
+                  rules={[
+                    {
+                      required: true,
+                      type: "email",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Email address" />
+                </Form.Item>
+
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  rules={[{ required: true }]}
+                >
+                  <Input.Password placeholder="Password" />
+                </Form.Item>
+
+                <Form.Item>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="login_submit_btn"
+                  >
+                    Submit {isLoading && <Spin size="small" />}
+                  </Button>
+                </Form.Item>
+              </Form>
+              <Typography.Paragraph className="form_help_text">
+                Already have an account? <Link to="/signin">Sign In</Link>
+              </Typography.Paragraph>
+            </Card>
+          </Col>
+        </Row>
+      </div>
+    </div>
   );
 }
 

@@ -7,19 +7,19 @@ import { getToken } from "../hooks/helpers";
 function AuthProvider({ children }) {
   const [userData, setUserData] = useState();
   const [isLoading, setIsLoading] = useState(false);
-
   const authToken = getToken();
+
   const fetchLoggedInUser = async (token) => {
     setIsLoading(true);
     try {
       const response = await fetch(
         `http://${import.meta.env.VITE_API}/users/me`,
         {
+          method: `GET`,
           headers: { Authorization: `${import.meta.env.VITE_BEARER} ${token}` },
         }
       );
       const data = await response.json();
-
       setUserData(data);
     } catch (error) {
       console.error(error);

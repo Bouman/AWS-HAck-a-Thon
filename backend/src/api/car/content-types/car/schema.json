@@ -8,7 +8,8 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": true,
+    "populateCreatorFields": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -29,7 +30,7 @@
     },
     "photo": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "allowedTypes": [
         "images"
@@ -44,6 +45,22 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "inversedBy": "cars"
+    },
+    "year": {
+      "type": "integer",
+      "required": true
+    },
+    "model": {
+      "type": "string",
+      "required": true
+    },
+    "seats": {
+      "type": "integer",
+      "required": true
+    },
+    "km": {
+      "type": "integer",
+      "required": true
     }
   }
 }

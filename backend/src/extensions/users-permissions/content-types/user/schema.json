@@ -84,6 +84,11 @@
     "github_username": {
       "type": "string",
       "unique": true
+    },
+    "cars": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::car.car"
     }
   }
 }

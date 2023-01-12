@@ -1,0 +1,35 @@
+/* eslint-disable react/prop-types */
+
+import "./cars.scss";
+import { useState } from "react";
+import { GrMapLocation } from "react-icons/gr";
+import { Link } from "react-router-dom";
+
+function CarParc() {
+  const [isActive, setIsActive] = useState();
+
+  return (
+    <div className="page">
+      <div className="list">
+        <div className="city">
+          <p>
+            <GrMapLocation className="icon" />
+            Toulouse
+          </p>
+        </div>
+        <div className="info">
+          <div className="car_picture">
+            <img src="" alt="" />
+          </div>
+          <ul>
+            <li>
+              <Link to="/details/${id}">Ici</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default CarParc;

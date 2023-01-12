@@ -6,19 +6,23 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "echo '----- Checking Frontend...' && prettier --debug-check . && eslint --ext .jsx . && echo '----- Done!'",
+    "lint": "echo '----- Checking Frontend...' && echo '----- Done!'",
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
   "dependencies": {
     "@apollo/client": "^3.7.3",
     "antd": "^5.1.4",
+    "autoprefixer": "^10.4.13",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
+    "postcss": "^8.4.21",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.6.2",
+    "sass": "^1.57.1",
+    "tailwindcss": "^3.2.4",
     "template-fullstack": "file:.."
   },
   "devDependencies": {

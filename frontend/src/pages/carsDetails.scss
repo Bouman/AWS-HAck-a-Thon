@@ -1,0 +1,43 @@
+.newContainer {
+  width: 60%;
+  height: auto;
+  margin: 40px auto;
+
+  .pictures {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    position: relative;
+
+    .picture_one {
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+
+      img {
+        height: 250px;
+        width: 80%;
+        margin: 20px auto;
+        border-radius: 20px;
+      }
+    }
+    .picture_two {
+      width: 50%;
+      height: 100%;
+
+      img {
+        height: 130px;
+        width: 60%;
+        margin: 10px 20px;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  .title {
+    height: 60px;
+  }
+  .tech_info {
+    height: 500px;
+  }
+}

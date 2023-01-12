@@ -20,7 +20,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::car.car",
-      "inversedBy": "categories"
+      "mappedBy": "categories"
     }
   }
 }

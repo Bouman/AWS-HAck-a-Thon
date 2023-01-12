@@ -19,6 +19,8 @@
     "husky": "^7.0.0"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
     "react-router-dom": "^6.6.2"
   }
 }

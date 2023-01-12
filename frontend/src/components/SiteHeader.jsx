@@ -1,19 +1,19 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Space } from "antd";
 import { IoLogoFreebsdDevil } from "react-icons/io";
 import { useQuery, gql } from "@apollo/client";
-import { useAuthContext } from "../contexts/AuthContext";
+
 import { removeToken } from "../hooks/helpers";
+import { useAuthContext } from "../contexts/AuthContext";
 
 const CATEGORIES = gql`
   query GetCategories {
     categories {
       data {
-        id
         attributes {
           name
         }
+        id
       }
     }
   }
@@ -32,51 +32,53 @@ function SiteHeader() {
   if (error) return <p>Error fetching categories</p>;
 
   return (
-    <Space className="header_space">
-      <Link to="/">
-        <h1>Rent Cars School</h1>
-      </Link>
-      <Button className="header_space_brand" href="/" type="link">
-        <IoLogoFreebsdDevil size={55} />
-      </Button>
-      <Space className="auth_buttons">
-        {user ? (
-          <>
-            <Button className="auth_button_login" href="/profile" type="link">
-              {user.username}
-            </Button>
-            <Button
-              className="auth_button_signUp"
-              type="primary"
-              onClick={handleLogout}
-            >
-              Logout
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button className="auth_button_login" href="/signin" type="link">
-              Login
-            </Button>
-            <Button
-              className="auth_button_signUp"
-              href="/signup"
-              type="primary"
-            >
-              SignUp
-            </Button>
-          </>
-        )}
-      </Space>
-      <nav className="categories">
-        <span>Filter cars by category:</span>
-        {data.categories.data.map((category) => (
-          <Link key={category.id} to={`/category/${category.id}`}>
-            {category.attributes.name}
+    <div className="bg-rose-800">
+      <nav className="flex justify-around">
+        <div className="flex flex-row gap-12">
+          <Link className="text-white" to="/">
+            <IoLogoFreebsdDevil size={50} />
           </Link>
-        ))}
+
+          <Link to="/">
+            <h1 className="text-4xl font-bold text-gray-200">LuxeCar</h1>
+          </Link>
+        </div>
+        <div className="border-l-2 rounded-xl flex flex-nowrap text-white gap-8 text-xl uppercase font-bebas hover:text-gray-800 items-center px-4 bg-gradient-to-r from-gray-800 to-transparent">
+          {user ? (
+            <>
+              <Link className="" to="/profile">
+                {user.username}
+              </Link>
+              <Link className="" type="primary" onClick={handleLogout}>
+                Logout
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link className="" to="/signin">
+                Login
+              </Link>
+              <Link className="" to="/signup">
+                SignUp
+              </Link>
+            </>
+          )}
+        </div>
       </nav>
-    </Space>
+      <div>
+        <nav className="sticky top-12 w-full h-24 z-50 bg-gray-800 bottom-0 border-t-2 border-b-2 text-gray-200 pt-8 pl-4">
+          {data.categories.data.map((category) => (
+            <Link
+              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border-4 border-white hover:bg-gray-100 hover:text-rose-800 focus:z-10 focus:ring-4 focus:ring-gray-200"
+              key={category.id}
+              to={`/category/${category.id}`}
+            >
+              {category.attributes.name}
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </div>
   );
 }
 

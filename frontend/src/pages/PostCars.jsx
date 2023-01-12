@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useQuery, gql } from "@apollo/client";
+import { AiOutlinePlus } from "react-icons/ai";
+import { useParams } from "react-router-dom";
 import { Button, Card, Col, Form, Input, message, Row, Spin } from "antd";
 import { useAuthContext } from "../contexts/AuthContext";
-import { getToken } from "../hooks/helpers";
 
-function Profile() {
+function PostCars() {
   const [loading, setLoading] = useState(false);
   const { user, isLoading, setUser } = useAuthContext();
 
@@ -186,4 +188,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default PostCars;

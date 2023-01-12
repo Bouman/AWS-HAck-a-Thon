@@ -9,9 +9,12 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // page & layout imports
 import { Col, Layout, Row } from "antd";
+import CarParc from "@pages/CarParc";
+import FooterSite from "@components/FooterSite";
 import Homepage from "./pages/HomePage";
 import CarsDetails from "./pages/CarsDetails";
 import Category from "./pages/Category";
+import PostCars from "./pages/PostCars";
 import SiteHeader from "./components/SiteHeader";
 import Profile from "./components/Profile";
 import SocialCards from "./components/SocialCards";
@@ -19,7 +22,7 @@ import { getToken } from "./hooks/helpers";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 // apollo client
 const client = new ApolloClient({
   uri: "http://localhost:1337/graphql",
@@ -31,13 +34,11 @@ function App() {
     <Router>
       <ApolloProvider client={client}>
         <Layout>
-          <Row gutter={[0, 32]}>
+          <Row gutter={[0, 0]}>
             <Col span={24}>
-              <Header>
-                <SiteHeader />
-              </Header>
+              <SiteHeader />
             </Col>
-            <Col span={22} offset={1}>
+            <Col span={24} offset={0}>
               <Content>
                 <Routes>
                   <Route path="/" element={<Homepage />} />
@@ -52,14 +53,24 @@ function App() {
                       getToken() ? <Profile /> : <Navigate to="/signin" />
                     }
                   />
+                  <Route
+                    path="/postcars"
+                    element={
+                      getToken() ? <PostCars /> : <Navigate to="/signin" />
+                    }
+                  />
+                  <Route path="/carparc" element={<CarParc />} />
                 </Routes>
               </Content>
             </Col>
           </Row>
         </Layout>
       </ApolloProvider>
+      <FooterSite />
     </Router>
   );
 }
 
 export default App;
+
+// {/* <FooterSite /> */}
