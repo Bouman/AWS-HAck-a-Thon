@@ -49,6 +49,9 @@ function SiteHeader() {
               <Link className="" to="/profile">
                 {user.username}
               </Link>
+              <Link className="" to="/dashboard">
+                Dashboard
+              </Link>
               <button className="" type="button" onClick={handleLogout}>
                 Logout
               </button>

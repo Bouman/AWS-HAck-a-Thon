@@ -62,11 +62,11 @@
       "type": "integer",
       "required": true
     },
-    "locations": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::location.location",
-      "inversedBy": "cars"
+    "date_debut": {
+      "type": "datetime"
+    },
+    "date_fin": {
+      "type": "datetime"
     }
   }
 }

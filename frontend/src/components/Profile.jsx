@@ -38,14 +38,15 @@ function Profile() {
     return <Spin size="large" />;
   }
 
-  return (
+  console.log(user);
+
+  return user && (
     <Card className="profile_page_card">
       <Form
         layout="vertical"
         initialValues={{
           username: user?.username,
           email: user?.email,
-          body: user?.body,
           twitter_username: user?.twitter_username,
           linkedin_username: user?.linkedin_username,
           github_username: user?.github_username,
@@ -102,7 +103,7 @@ function Profile() {
           <Col span={24}>
             <Form.Item
               label="About"
-              name="body"
+              name="about"
               rules={[
                 {
                   required: true,

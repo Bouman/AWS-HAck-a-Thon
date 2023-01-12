@@ -14,7 +14,7 @@ import FooterSite from "@components/FooterSite";
 import Homepage from "./pages/HomePage";
 import CarsDetails from "./pages/CarsDetails";
 import Category from "./pages/Category";
-import PostCars from "./pages/PostCars";
+import Dashboard from "./pages/Dashboard";
 import SiteHeader from "./components/SiteHeader";
 import Profile from "./components/Profile";
 import SocialCards from "./components/SocialCards";
@@ -54,9 +54,9 @@ function App() {
                     }
                   />
                   <Route
-                    path="/postcars"
+                    path="/dashboard"
                     element={
-                      getToken() ? <PostCars /> : <Navigate to="/signin" />
+                      getToken() ? <Dashboard /> : <Navigate to="/signin" />
                     }
                   />
                   <Route path="/carparc" element={<CarParc />} />

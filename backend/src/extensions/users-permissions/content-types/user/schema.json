@@ -63,15 +63,15 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "About": {
+    "about": {
       "type": "richtext",
       "required": true,
-      "minLength": 120
+      "default": "Hello There 👋",
+      "maxLength": 120
     },
     "avatar_url": {
       "type": "string",
-      "regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)",
-      "default": "https://t3.ftcdn.net/jpg/02/09/37/00/360_F_209370065_JLXhrc5inEmGl52SyvSPeVB23hB6IjrR.jpg"
+      "regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
     },
     "twitter_username": {
       "type": "string",
@@ -89,6 +89,10 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::car.car"
+    },
+    "website_url": {
+      "type": "string",
+      "required": true
     }
   }
 }
