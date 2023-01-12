@@ -8,7 +8,7 @@ function CardCars({ name, rate, carId, carImage }) {
       <div className="overflow-hidden">
         <Link to={`/details/${carId}`}>
           <img
-            className="h-full hover:scale-125 hover:rotate-5 transition ease-in-out delay-150"
+            className="h-[15rem] hover:scale-125 hover:rotate-5 transition ease-in-out delay-150"
             src={carImage}
             alt=""
           />

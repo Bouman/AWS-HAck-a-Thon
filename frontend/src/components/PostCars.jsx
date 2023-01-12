@@ -1,19 +1,37 @@
+import {
+  Alert,
+  Button,
+  Card,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  message,
+  Row,
+  Spin,
+  Rate,
+  Upload,
+} from "antd";
 import React, { useState } from "react";
-import { Button, Card, Col, Form, Input, message, Row, Spin } from "antd";
+import { BiMessageSquareAdd } from "react-icons/bi";
 import { useAuthContext } from "../contexts/AuthContext";
+import useScreenSize from "../hooks/useScreenSize";
 import { getToken } from "../hooks/helpers";
 
 function PostCars() {
-  const [loading, setLoading] = useState(false);
-  const { user, isLoading, setUser } = useAuthContext();
+  const { isDesktopView } = useScreenSize();
+  const { setUser } = useAuthContext();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleProfileUpdate = async (data) => {
-    setLoading(true);
+  const handleAddCar = async (data) => {
+    setIsLoading(true);
     try {
       const response = await fetch(
-        `http://${import.meta.env.VITE_API}/users/${user.id}`,
+        `http://${import.meta.env.VITE_API}/api/cars`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             // set the auth token to the user's jwt
@@ -23,166 +41,112 @@ function PostCars() {
         }
       );
       const responseData = await response.json();
-
       setUser(responseData);
       message.success("Data saved successfully!");
-    } catch (error) {
+    } catch (err) {
       console.error(Error);
-      message.error("Error While Updating the Profile!");
+      message.error("Error when adding car !");
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  if (isLoading) {
-    return <Spin size="large" />;
-  }
-
   return (
-    <Card className="profile_page_card">
-      <Form
-        layout="vertical"
-        initialValues={{
-          username: user?.username,
-          email: user?.email,
-          body: user?.body,
-          twitter_username: user?.twitter_username,
-          linkedin_username: user?.linkedin_username,
-          github_username: user?.github_username,
-          avatar_url: user?.avatar_url,
-          website_url: user?.website_url,
-          about: user?.about,
-        }}
-        onFinish={handleProfileUpdate}
-      >
-        <Row gutter={[16, 16]}>
-          <Col md={8} lg={8} sm={24} xs={24}>
-            <Form.Item
-              label="Username"
-              name="username"
-              rules={[
-                {
-                  required: true,
-                  message: "Username is required!",
-                  type: "string",
-                },
-              ]}
-            >
-              <Input placeholder="Username" />
-            </Form.Item>
-          </Col>
-          <Col md={8} lg={8} sm={24} xs={24}>
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                {
-                  required: true,
-                  message: "Email is required!",
-                  type: "email",
-                },
-              ]}
-            >
-              <Input placeholder="Email" />
-            </Form.Item>
-          </Col>
-          <Col md={8} lg={8} sm={24} xs={24}>
-            <Form.Item
-              label="Avatar Url"
-              name="avatar_url"
-              rules={[
-                {
-                  type: "url",
-                },
-              ]}
-            >
-              <Input placeholder="Avatar Url" />
-            </Form.Item>
-          </Col>
-          <Col span={24}>
-            <Form.Item
-              label="About"
-              name="body"
-              rules={[
-                {
-                  required: true,
-                  type: "string",
-                  max: 120,
-                },
-              ]}
-            >
-              <Input.TextArea placeholder="About" rows={6} />
-            </Form.Item>
-          </Col>
-          <Col md={8} lg={8} sm={24} xs={24}>
-            <Form.Item
-              label="Twitter Username"
-              name="twitter_username"
-              rules={[
-                {
-                  type: "string",
-                },
-              ]}
-            >
-              <Input placeholder="Twitter Username" />
-            </Form.Item>
-          </Col>
-          <Col md={8} lg={8} sm={24} xs={24}>
-            <Form.Item
-              label="LinkedIn Username"
-              name="linkedin_username"
-              rules={[
-                {
-                  type: "string",
-                },
-              ]}
-            >
-              <Input placeholder="LinkedIn Username" />
-            </Form.Item>
-          </Col>
-          <Col md={8} lg={8} sm={24} xs={24}>
-            <Form.Item
-              label="Github Username"
-              name="github_username"
-              rules={[
-                {
-                  type: "string",
-                },
-              ]}
-            >
-              <Input placeholder="Github Username" />
-            </Form.Item>
-          </Col>
-          <Col md={8} lg={8} sm={24} xs={24}>
-            <Form.Item
-              label="Website Url"
-              name="website_url"
-              rules={[
-                {
-                  type: "url",
-                },
-              ]}
-            >
-              <Input placeholder="Website Url" />
-            </Form.Item>
+    <div className="min-h-screen bg-rose-800">
+      <div className="h-full min-h-screen bg-gray-800 rounded-br-[25%] pt-12 border-b-4 border-rose-500">
+        <Row align="middle">
+          <Col span={isDesktopView ? 19 : 24} offset={isDesktopView ? 3 : 3}>
+            <Card title="Add Car">
+              {error ? (
+                <Alert
+                  className="alert_error"
+                  message={error}
+                  type="error"
+                  closable
+                  afterClose={() => setError("")}
+                />
+              ) : null}
+
+              <Form
+                name="postcars"
+                layout="vertical"
+                onFinish={handleAddCar}
+                autoComplete="on"
+              >
+                <Form.Item label="Title" name="title">
+                  <Input placeholder="Title" />
+                </Form.Item>
+
+                <Form.Item label="Upload" valuePropName="photo">
+                  <Upload action="/upload.do" listType="picture-card">
+                    <div>
+                      <BiMessageSquareAdd />
+                      <div
+                        style={{
+                          marginTop: 5,
+                        }}
+                      >
+                        Upload
+                      </div>
+                    </div>
+                  </Upload>
+                </Form.Item>
+
+                <Form.Item label="Rating" name="rating">
+                  <Rate placeholder="Rating" />
+                </Form.Item>
+
+                <Form.Item label="Model" name="model">
+                  <Input placeholder="Model" />
+                </Form.Item>
+
+                <Form.Item label="Desciption" name="body">
+                  <Input.TextArea placeholder="Desciption" />
+                </Form.Item>
+
+                <Form.Item label="Price" name="price">
+                  <InputNumber placeholder="Price" />
+                </Form.Item>
+
+                <Form.Item label="Year" name="year">
+                  <InputNumber placeholder="Year" />
+                </Form.Item>
+
+                <Form.Item label="Seats" name="seats">
+                  <InputNumber placeholder="Seats" />
+                </Form.Item>
+
+                <Form.Item label="Km" name="km">
+                  <InputNumber placeholder="Kilometres" />
+                </Form.Item>
+
+                <Form.Item label="Date de Debut" name="date_debut">
+                  <DatePicker placeholder="Date de Debut" />
+                </Form.Item>
+
+                <Form.Item label="Date de Fin" name="date_fin">
+                  <DatePicker placeholder="Date de fin" />
+                </Form.Item>
+
+                <Form.Item label="Ville" name="ville">
+                  <Input placeholder="Ville" />
+                </Form.Item>
+
+                <Form.Item>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="login_submit_btn"
+                  >
+                    Submit {isLoading && <Spin size="small" />}
+                  </Button>
+                </Form.Item>
+              </Form>
+            </Card>
           </Col>
         </Row>
-        <Button
-          className="profile_save_btn"
-          htmlType="submit"
-          type="primary"
-          size="large"
-        >
-          {loading ? (
-            <>
-              <Spin size="small" /> Saving
-            </>
-          ) : (
-            "Save"
-          )}
-        </Button>
-      </Form>
-    </Card>
+      </div>
+    </div>
   );
 }
 

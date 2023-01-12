@@ -67,6 +67,10 @@
     },
     "date_fin": {
       "type": "datetime"
+    },
+    "ville": {
+      "type": "string",
+      "required": true
     }
   }
 }

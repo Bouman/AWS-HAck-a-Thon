@@ -9,8 +9,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // page & layout imports
 import { Col, Layout, Row } from "antd";
-import CarParc from "@pages/CarParc";
 import FooterSite from "@components/FooterSite";
+import PostCars from "@components/PostCars";
 import Homepage from "./pages/HomePage";
 import CarsDetails from "./pages/CarsDetails";
 import Category from "./pages/Category";
@@ -59,7 +59,7 @@ function App() {
                       getToken() ? <Dashboard /> : <Navigate to="/signin" />
                     }
                   />
-                  <Route path="/carparc" element={<CarParc />} />
+                  <Route path="/postcar" element={<PostCars />} />
                 </Routes>
               </Content>
             </Col>

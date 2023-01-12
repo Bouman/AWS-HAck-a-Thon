@@ -47,7 +47,6 @@ export default function CarsDetails() {
 
   return (
     <div className="text-black-500 h-screen border-4 bg-white">
-      <div className="rating">{data.car.data.attributes.rating}</div>
       <div className="newContainer">
         <div className="pictures">
           {data.car.data.attributes.photo.data.map((d) => (
@@ -62,10 +61,12 @@ export default function CarsDetails() {
         <div className="title">
           <h1>{data.car.data.attributes.title}</h1>
           <h6>
-            {data.car.data.attributes.year}, {data.car.data.attributes.km},{" "}
+            Année : {data.car.data.attributes.year} •{" "}
+            {data.car.data.attributes.km}km • Nombres de sieges :{" "}
             {data.car.data.attributes.seats}
           </h6>
         </div>
+        <div className="line" />
         <div className="tech_info">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, quo
           tempora! Nam provident suscipit est maxime commodi. Itaque consequatur
@@ -80,6 +81,7 @@ export default function CarsDetails() {
           rerum illum sequi deleniti distinctio molestiae nihil, laudantium
           maiores
         </div>
+        <div className="line" />
         <div className="description">{data.car.data.attributes.body}</div>
       </div>
     </div>
