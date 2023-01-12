@@ -44,7 +44,7 @@ function App() {
                   <Route path="/" element={<Homepage />} />
                   <Route path="/details/:id" element={<CarsDetails />} />
                   <Route path="/category/:id" element={<Category />} />
-                  <Route path="/users" element={<SocialCards />} />
+                  <Route path="/enterprises" element={<SocialCards />} />
                   <Route path="/signin" element={<SignIn />} />
                   <Route path="/signup" element={<SignUp />} />
                   <Route

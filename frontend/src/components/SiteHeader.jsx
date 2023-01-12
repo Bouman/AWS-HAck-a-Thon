@@ -38,12 +38,14 @@ function SiteHeader() {
           <Link className="text-white" to="/">
             <IoLogoFreebsdDevil size={50} />
           </Link>
-
           <Link to="/">
             <h1 className="text-4xl font-bold text-gray-200">LuxeCar</h1>
           </Link>
         </div>
         <div className="border-l-2 rounded-xl flex flex-nowrap text-white gap-8 text-xl uppercase font-bebas hover:text-gray-800 items-center px-4 bg-gradient-to-r from-gray-800 to-transparent">
+          <Link className="" to="/enterprises">
+            Enterprises
+          </Link>
           {user ? (
             <>
               <Link className="" to="/profile">

@@ -56,6 +56,7 @@ function SocialCards() {
               align="center"
             >
               <Image
+                height="110px"
                 className="social_image"
                 preview={false}
                 src={
