@@ -38,6 +38,7 @@ const CARS = gql`
 
 export default function CarsDetails() {
   const { id } = useParams();
+  
   const { loading, error, data } = useQuery(CARS, {
     variables: { id },
   });

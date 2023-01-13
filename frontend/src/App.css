@@ -7,6 +7,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(31,41,55);
+}
+
+#dashborad {
+  background-color: rgb(31,41,55);
+  color: white;
 }
 
 @tailwind base;

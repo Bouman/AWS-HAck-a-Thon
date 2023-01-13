@@ -6,15 +6,17 @@ import CarParc from "../components/CarParc";
 export default function Dashboard() {
   return (
     <div className="dashboard-wrapper">
-      <div className="Dashboard">
-        <CarParc />
-      </div>
-      <div className="SpeedLink">
-        <Link className="" to="/postcar">
+      <div className="bg-rose-800">
+        <Link className="border-2 h-fit flex flex-row text-lg itels-center bg-gray-800 text-gray-200 p-2 rounded-xl hover:bg-rose-800 mt-20" to="/postcar">
           <BsPlusLg />
           Add a vehicle
         </Link>
       </div>
+      <div className="Dashboard">
+    <div className="">
+        <CarParc />
+      </div>
+    </div>
     </div>
   );
 }

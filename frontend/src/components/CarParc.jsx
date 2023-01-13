@@ -6,30 +6,36 @@ import { useQuery, gql } from "@apollo/client";
 import { useAuthContext } from "../contexts/AuthContext";
 
 const CARS = gql`
-  query GetCarsId {
-    cars {
+  query GetCarsId($id: ID!) {
+    usersPermissionsUser(id: $id) {
       data {
         id
         attributes {
-          title
-          ville
-          createdBy {
-            id
-          }
-          photo {
+          cars {
             data {
               attributes {
-                url
-              }
-            }
-          }
-          body
-          rating
-          categories {
-            data {
-              id
-              attributes {
-                name
+                title
+                ville
+                createdBy {
+                  id
+                }
+                photo {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+                body
+                rating
+                categories {
+                  data {
+                    id
+                    attributes {
+                      name
+                    }
+                  }
+                }
               }
             }
           }
@@ -42,24 +48,30 @@ const CARS = gql`
 function CarParc() {
   const { user } = useAuthContext();
   const id = user?.id;
-  const { loading, error, data } = useQuery(CARS);
+
+  const { loading, error, data } = useQuery(CARS, {
+    variables: {id},
+  });
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
   return (
     user &&
     data && (
-      <div className="page">
-        {data.cars.data
-          .filter((el) => el.attributes.createdBy.id === id)
+      <div id="dashborad" className="text-lg py-20">
+        {data.usersPermissionsUser.data.attributes.cars.data
           .map((cars) => (
-            <div className="list">
+            <div className="w-1/2 mx-auto border-4 rounded-xl bg-rose-800 pt-2 text-center flex flex-col">
+       
+
               <div className="city">
-                <p>
+                <p className="text-3xl font-bebas py-2">
                   <GrMapLocation className="icon" />
                   {cars.attributes.ville}
                 </p>
-              </div>
+     
+            </div>
               <div className="info">
                 <div className="car_picture">
                   <img
@@ -79,32 +91,6 @@ function CarParc() {
             </div>
           ))}
         <hr />
-        {data.cars.data.map((cars) => (
-          <div className="list">
-            <div className="city">
-              <p>
-                <GrMapLocation className="icon" />
-                {cars.attributes.ville}
-              </p>
-            </div>
-            <div className="info">
-              <div className="car_picture">
-                <img
-                  src={
-                    import.meta.env.VITE_BACKEND_URL +
-                    cars.attributes.photo.data[0].attributes.url
-                  }
-                  alt=""
-                />
-              </div>
-              <ul>
-                <li>
-                  <Link to="/details">{cars.attributes.body}</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        ))}
       </div>
     )
   );
